@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <title>TODO supply a title</title>
+        <script src="https://code.jquery.com/jquery-3.1.1.slim.js" ></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.min.js"></script>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+        
+        <script src="app.js"></script>
+         <script src="temperatura.js"></script>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body ng-app="misurazioneModule">
+        <div ng-controller="TemperaturaController as T" style="width: 80%;margin-left: 10%;margin-right: 10%">
+            <form name="MyForm " style="margin-bottom: 20px">
+	<h2>Nuova misurazione:</h2>
+        <input type="date"  ng-model="T.temperatura.datamisurazione" >
+        <input type="number"  placeholder="temperatura" autofocus required ng-model="T.temperatura.valore"/>
+        <button ng-click="T.create()">Salva</button>
+        
+</form>
+            <div ng-show="T.message">{{T.message}}</div>
+            <table style="width: 80%; text-align: center" class="table table-bordered" >
+                <thead>
+                <tr>
+                    <td>id</td>
+                    <td>temperatura</td>
+                    <td>data misurazione</td>
+                    <td>erase</td>
+                </tr>
+                </thead>
+            <tbody>
+                <tr ng-repeat="a in T.response">
+                    <td>{{a.id}}</td>
+                    <td>{{a.valore}}</td>
+                    <td>{{a.datamisurazione}}</td>
+                    <td><button ng-click="T.delete(a.id)">X</button></td>
+                </tr>
+            </tbody>
+            </table>
+        </div>
+        
+        
+        
+    </body>
+</html>
